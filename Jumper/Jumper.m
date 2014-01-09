@@ -46,7 +46,7 @@ static Jumper *sharedPlugin;
             NSMenuItem *upActionMenuItem = [[NSMenuItem alloc] initWithTitle:moveUpTitle action:@selector(goUp) keyEquivalent:@""];
             unichar upArrowKey = NSUpArrowFunctionKey;
             [upActionMenuItem setKeyEquivalent:[NSString stringWithCharacters:&upArrowKey length:1]];
-            [upActionMenuItem setKeyEquivalentModifierMask:NSControlKeyMask];
+            [upActionMenuItem setKeyEquivalentModifierMask:kModifierKey];
             [upActionMenuItem setTarget:self];
             [[menuItem submenu] addItem:upActionMenuItem];
 
@@ -54,7 +54,7 @@ static Jumper *sharedPlugin;
             NSMenuItem *downActionMenuItem = [[NSMenuItem alloc] initWithTitle:moveDownTitle action:@selector(goDown) keyEquivalent:@""];
             unichar downArrowKey = NSDownArrowFunctionKey;
             [downActionMenuItem setKeyEquivalent:[NSString stringWithCharacters:&downArrowKey length:1]];
-            [downActionMenuItem setKeyEquivalentModifierMask:NSControlKeyMask];
+            [downActionMenuItem setKeyEquivalentModifierMask:kModifierKey];
             [downActionMenuItem setTarget:self];
             [[menuItem submenu] addItem:downActionMenuItem];
         }
@@ -75,6 +75,15 @@ static Jumper *sharedPlugin;
     for (NSUInteger i = 0; i < kMovementStep; i++) {
         [[[[NSApplication sharedApplication] keyWindow] firstResponder] moveDown:self];
     }
+}
+
+- (void)goToNextMethod
+{
+    
+}
+
+- (void)goToPreviousMethod
+{
     
 }
 

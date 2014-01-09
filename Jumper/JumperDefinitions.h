@@ -7,3 +7,4 @@
 //
 
 #define kMovementStep       10
+#define kModifierKey        NSAlternateKeyMask

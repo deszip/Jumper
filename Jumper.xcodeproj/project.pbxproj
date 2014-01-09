@@ -14,6 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E617833187EF8320092992B /* JumperDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumperDefinitions.h; sourceTree = "<group>"; };
 		0EB1712F187EE4E300520820 /* Jumper.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Jumper.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EB17132187EE4E300520820 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		0EB17134187EE4E300520820 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -66,6 +67,7 @@
 		0EB17136187EE4E300520820 /* Jumper */ = {
 			isa = PBXGroup;
 			children = (
+				0E617833187EF8320092992B /* JumperDefinitions.h */,
 				0EB1713C187EE4E300520820 /* Jumper.h */,
 				0EB1713D187EE4E300520820 /* Jumper.m */,
 				0EB17137187EE4E300520820 /* Supporting Files */,
@@ -280,6 +282,7 @@
 				0EB17144187EE4E300520820 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

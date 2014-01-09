@@ -8,6 +8,8 @@
 
 #import <AppKit/AppKit.h>
 
+#import "JumperDefinitions.h"
+
 @interface Jumper : NSObject {
     
 }

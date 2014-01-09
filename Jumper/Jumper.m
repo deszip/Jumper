@@ -14,6 +14,9 @@ static Jumper *sharedPlugin;
 
 @property (nonatomic, strong) NSBundle *bundle;
 
+- (void)goUp;
+- (void)goDown;
+
 @end
 
 @implementation Jumper
@@ -39,14 +42,16 @@ static Jumper *sharedPlugin;
         if (menuItem) {
             [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
             
-            NSMenuItem *upActionMenuItem = [[NSMenuItem alloc] initWithTitle:@"10 lines up" action:@selector(goUp) keyEquivalent:@""];
+            NSString *moveUpTitle = [NSString stringWithFormat:@"%i lines up", kMovementStep];
+            NSMenuItem *upActionMenuItem = [[NSMenuItem alloc] initWithTitle:moveUpTitle action:@selector(goUp) keyEquivalent:@""];
             unichar upArrowKey = NSUpArrowFunctionKey;
             [upActionMenuItem setKeyEquivalent:[NSString stringWithCharacters:&upArrowKey length:1]];
             [upActionMenuItem setKeyEquivalentModifierMask:NSControlKeyMask];
             [upActionMenuItem setTarget:self];
             [[menuItem submenu] addItem:upActionMenuItem];
-            
-            NSMenuItem *downActionMenuItem = [[NSMenuItem alloc] initWithTitle:@"10 lines down" action:@selector(goDown) keyEquivalent:@""];
+
+            NSString *moveDownTitle = [NSString stringWithFormat:@"%i lines down", kMovementStep];
+            NSMenuItem *downActionMenuItem = [[NSMenuItem alloc] initWithTitle:moveDownTitle action:@selector(goDown) keyEquivalent:@""];
             unichar downArrowKey = NSDownArrowFunctionKey;
             [downActionMenuItem setKeyEquivalent:[NSString stringWithCharacters:&downArrowKey length:1]];
             [downActionMenuItem setKeyEquivalentModifierMask:NSControlKeyMask];
@@ -60,18 +65,14 @@ static Jumper *sharedPlugin;
 
 - (void)goUp
 {
-    //NSLog(@"First responder: %@", [[[NSApplication sharedApplication] keyWindow] firstResponder]);
-    
-    for (NSUInteger i = 0; i < 10; i++) {
+    for (NSUInteger i = 0; i < kMovementStep; i++) {
         [[[[NSApplication sharedApplication] keyWindow] firstResponder] moveUp:self];
     }
 }
 
 - (void)goDown
 {
-    //NSLog(@"First responder: %@", [[[NSApplication sharedApplication] keyWindow] firstResponder]);
-
-    for (NSUInteger i = 0; i < 10; i++) {
+    for (NSUInteger i = 0; i < kMovementStep; i++) {
         [[[[NSApplication sharedApplication] keyWindow] firstResponder] moveDown:self];
     }
     

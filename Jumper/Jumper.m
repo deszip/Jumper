@@ -13,6 +13,7 @@ static Jumper *sharedPlugin;
 @interface Jumper()
 
 @property (nonatomic, strong) NSBundle *bundle;
+
 @end
 
 @implementation Jumper
@@ -29,36 +30,51 @@ static Jumper *sharedPlugin;
     }
 }
 
-- (id)initWithBundle:(NSBundle *)plugin {
+- (id)initWithBundle:(NSBundle *)plugin
 {
     if (self = [super init]) {
-        // reference to plugin's bundle, for resource acccess
         self.bundle = plugin;
         
-        // Create menu items, initialize UI, etc.
-
-        // Sample Menu Item:
-        NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"File"];
+        NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
         if (menuItem) {
             [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
-            NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"Do Action" action:@selector(doMenuAction) keyEquivalent:@""];
-            [actionMenuItem setTarget:self];
-            [[menuItem submenu] addItem:actionMenuItem];
+            
+            NSMenuItem *upActionMenuItem = [[NSMenuItem alloc] initWithTitle:@"10 lines up" action:@selector(goUp) keyEquivalent:@""];
+            unichar upArrowKey = NSUpArrowFunctionKey;
+            [upActionMenuItem setKeyEquivalent:[NSString stringWithCharacters:&upArrowKey length:1]];
+            [upActionMenuItem setKeyEquivalentModifierMask:NSControlKeyMask];
+            [upActionMenuItem setTarget:self];
+            [[menuItem submenu] addItem:upActionMenuItem];
+            
+            NSMenuItem *downActionMenuItem = [[NSMenuItem alloc] initWithTitle:@"10 lines down" action:@selector(goDown) keyEquivalent:@""];
+            unichar downArrowKey = NSDownArrowFunctionKey;
+            [downActionMenuItem setKeyEquivalent:[NSString stringWithCharacters:&downArrowKey length:1]];
+            [downActionMenuItem setKeyEquivalentModifierMask:NSControlKeyMask];
+            [downActionMenuItem setTarget:self];
+            [[menuItem submenu] addItem:downActionMenuItem];
         }
     }
+
     return self;
 }
 
-// Sample Action, for menu item:
-- (void)doMenuAction
+- (void)goUp
 {
-    NSAlert *alert = [NSAlert alertWithMessageText:@"Hello, World" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
-    [alert runModal];
+    //NSLog(@"First responder: %@", [[[NSApplication sharedApplication] keyWindow] firstResponder]);
+    
+    for (NSUInteger i = 0; i < 10; i++) {
+        [[[[NSApplication sharedApplication] keyWindow] firstResponder] moveUp:self];
+    }
 }
 
-- (void)dealloc
+- (void)goDown
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    //NSLog(@"First responder: %@", [[[NSApplication sharedApplication] keyWindow] firstResponder]);
+
+    for (NSUInteger i = 0; i < 10; i++) {
+        [[[[NSApplication sharedApplication] keyWindow] firstResponder] moveDown:self];
+    }
+    
 }
 
 @end

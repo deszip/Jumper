@@ -3,4 +3,4 @@ Jumper
 
 Line movement plugin for XCode
 
-![Menu]()
+![Menu](https://github.com/deszip/Jumper/blob/master/menu.png)

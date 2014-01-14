@@ -77,14 +77,4 @@ static Jumper *sharedPlugin;
     }
 }
 
-- (void)goToNextMethod
-{
-    
-}
-
-- (void)goToPreviousMethod
-{
-    
-}
-
 @end

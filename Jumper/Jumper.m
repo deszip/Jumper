@@ -3,7 +3,7 @@
 //  Jumper
 //
 //  Created by Deszip on 09.01.14.
-//    Copyright (c) 2014 Alterplay. All rights reserved.
+//  Copyright (c) 2014 Alterplay. All rights reserved.
 //
 
 #import "Jumper.h"

@@ -37,26 +37,28 @@ static Jumper *sharedPlugin;
     if (self = [super init]) {
         self.bundle = plugin;
         
+        dispatch_async(dispatch_get_main_queue(), ^{
         NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
-        if (menuItem) {
-            [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
-            
-            NSString *moveUpTitle = [NSString stringWithFormat:@"%i lines up", kMovementStep];
-            NSMenuItem *upActionMenuItem = [[NSMenuItem alloc] initWithTitle:moveUpTitle action:@selector(goUp) keyEquivalent:@""];
-            unichar upArrowKey = NSUpArrowFunctionKey;
-            [upActionMenuItem setKeyEquivalent:[NSString stringWithCharacters:&upArrowKey length:1]];
-            [upActionMenuItem setKeyEquivalentModifierMask:kModifierKey];
-            [upActionMenuItem setTarget:self];
-            [[menuItem submenu] addItem:upActionMenuItem];
+            if (menuItem) {
+                [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
+                
+                NSString *moveUpTitle = [NSString stringWithFormat:@"%i lines up", kMovementStep];
+                NSMenuItem *upActionMenuItem = [[NSMenuItem alloc] initWithTitle:moveUpTitle action:@selector(goUp) keyEquivalent:@""];
+                unichar upArrowKey = NSUpArrowFunctionKey;
+                [upActionMenuItem setKeyEquivalent:[NSString stringWithCharacters:&upArrowKey length:1]];
+                [upActionMenuItem setKeyEquivalentModifierMask:kModifierKey];
+                [upActionMenuItem setTarget:self];
+                [[menuItem submenu] addItem:upActionMenuItem];
 
-            NSString *moveDownTitle = [NSString stringWithFormat:@"%i lines down", kMovementStep];
-            NSMenuItem *downActionMenuItem = [[NSMenuItem alloc] initWithTitle:moveDownTitle action:@selector(goDown) keyEquivalent:@""];
-            unichar downArrowKey = NSDownArrowFunctionKey;
-            [downActionMenuItem setKeyEquivalent:[NSString stringWithCharacters:&downArrowKey length:1]];
-            [downActionMenuItem setKeyEquivalentModifierMask:kModifierKey];
-            [downActionMenuItem setTarget:self];
-            [[menuItem submenu] addItem:downActionMenuItem];
-        }
+                NSString *moveDownTitle = [NSString stringWithFormat:@"%i lines down", kMovementStep];
+                NSMenuItem *downActionMenuItem = [[NSMenuItem alloc] initWithTitle:moveDownTitle action:@selector(goDown) keyEquivalent:@""];
+                unichar downArrowKey = NSDownArrowFunctionKey;
+                [downActionMenuItem setKeyEquivalent:[NSString stringWithCharacters:&downArrowKey length:1]];
+                [downActionMenuItem setKeyEquivalentModifierMask:kModifierKey];
+                [downActionMenuItem setTarget:self];
+                [[menuItem submenu] addItem:downActionMenuItem];
+            }
+        });
     }
 
     return self;
